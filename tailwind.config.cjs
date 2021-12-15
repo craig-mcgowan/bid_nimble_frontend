@@ -2,6 +2,9 @@ const config = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
 	theme: {
+		fontFamily: {
+			'logo': ['Stick No Bills']
+		},
 		extend: {}
 	},
 
