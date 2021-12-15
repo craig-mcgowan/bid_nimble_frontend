@@ -1,11 +1,12 @@
 <script>
 	import '../app.css';
 	import Header from '$lib/header.svelte'
+	import Sidebar from '$lib/sidebar.svelte'
 </script>
+<Sidebar/>
 <Header/>
+<main class="mt-20 ml-20">
+	<slot />
 
-<h1 class="uppercase text-indigo-500">
-  Hello People of Earth
-</h1>
+</main>
 
-<slot />
