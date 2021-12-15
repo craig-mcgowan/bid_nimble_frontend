@@ -4,8 +4,12 @@
 @tailwind utilities;
 
 @layer components {
+  .last-sidebar-icon {
+    @apply fixed bottom-4 left-3.5 h-8 w-8 text-green-400 hover:bg-green-400
+  }
+
   .sidebar-icon {
-    @apply relative flex items-center justify-center h-12 w-12 my-2 mx-auto bg-gray-500 text-orange-400 p-2 rounded-3xl hover:text-white hover:bg-orange-400 hover:rounded-xl transition-all duration-200 ease-linear cursor-pointer;
+    @apply relative flex shadow-lg items-center justify-center h-10 w-10 my-2 mx-auto bg-gray-500 text-orange-400 p-2 rounded-3xl hover:text-white hover:bg-orange-400 hover:rounded-xl last:last-sidebar-icon transition-all duration-200 ease-linear cursor-pointer  ;
   }
 
   .sidebar-tooltip {
