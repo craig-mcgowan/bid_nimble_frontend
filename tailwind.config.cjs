@@ -5,7 +5,8 @@ const config = {
 
 	theme: {
 		fontFamily: {
-			'logo': ['Stick No Bills']
+			'logo': ['Stick No Bills'],
+			'logo2': ['Architects Daughter']
 		},
 		extend: {}
 	},

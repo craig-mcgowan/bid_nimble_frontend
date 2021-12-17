@@ -5,15 +5,16 @@
   import MdFlightTakeoff from 'svelte-icons/md/MdFlightTakeoff.svelte'
   import FaMoon from 'svelte-icons/fa/FaMoon.svelte'
   import MdWbSunny from 'svelte-icons/md/MdWbSunny.svelte'
+  import { goto, invalidate, prefetch, prefetchRoutes } from '$app/navigation';
   export let dark
 
   let togglerIcon = FaMoon
   let togglerTip = "Use Dark Mode"
 
   $: iconsArr = [ 
-    {id:1, icon: FaPlus, tip: "New Estimate"},
-    {id:2, icon: MdFlightTakeoff , tip: "Takeoff Sheet"},
-    {id:3, icon: FaBuilding, tip: "Your Estimates"},
+    {id:"estimates/new", icon: FaPlus, tip: "New Estimate"},
+    {id:"takeoff", icon: MdFlightTakeoff , tip: "Takeoff Sheet"},
+    {id:"estimates", icon: FaBuilding, tip: "Your Estimates"},
     {id: "toggler", icon: togglerIcon, tip: togglerTip}
   ] 
 
@@ -30,26 +31,26 @@
     
   }
 
-  const clickHandler= (e) => {
-    console.log(e.target)
+  const clickHandler= (id) => {
+    goto(`/${id}`)
   }
 
 </script>
 
 
-<div class="fixed top-0 left- h-screen w-16 shadow-md pt-20">
+<div class="fixed top-0 left-0 z-10 h-screen w-16 shadow-md pt-20">
   <div class = "flex flex-col h-screen">
     {#each iconsArr as {icon, tip, id} (id)}
     {#if id === "toggler"}
-    <SidebarIcon {icon} {tip} clickFunction = {toggleDarkMode}
+    <SidebarIcon {icon} {tip} on:click = {toggleDarkMode}
     /> 
     {:else}
-    <SidebarIcon {icon} {tip} clickFunction = {clickHandler}/>
+    <SidebarIcon {icon} {tip} on:click = {() => clickHandler(id)}/>
 
     {/if}
     
     {/each}
-  </div>
+</div>
 
 
 </div>
