@@ -32,7 +32,7 @@
   }
 
   const clickHandler= (id) => {
-    goto(`/${id}`)
+    goto(`/app/${id}`)
   }
 
 </script>

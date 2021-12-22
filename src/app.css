@@ -9,7 +9,7 @@
   }
 
   .sidebar-icon {
-    @apply relative flex shadow-xl items-center justify-center h-10 w-10 my-2 mx-auto bg-gray-500 text-orange-400 p-2 rounded-3xl hover:text-white hover:bg-orange-400 hover:rounded-xl last:last-sidebar-icon transition-all duration-200 ease-linear cursor-pointer  ;
+    @apply relative flex shadow-xl items-center justify-center h-10 w-10 my-2 mx-auto bg-gray-500 text-orange-400 p-2 rounded-2xl hover:text-white hover:bg-orange-400 hover:scale-110 last:last-sidebar-icon transition-all duration-200 ease-linear cursor-pointer  ;
   }
 
   .sidebar-tooltip {
