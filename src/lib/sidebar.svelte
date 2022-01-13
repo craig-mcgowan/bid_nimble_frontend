@@ -38,8 +38,8 @@
 </script>
 
 
-<div class="fixed top-0 left-0 z-10 h-screen w-16 shadow-md pt-20">
-  <div class = "flex flex-col h-screen">
+<div class="fixed top-0 left-0 z-10 h-screen w-16 bg-white dark:bg-gray-600 shadow-md pt-20 hover:w-40 hover:shadow-lg transition-all">
+  <div class = " h-screen justify-start content-start">
     {#each iconsArr as {icon, tip, id} (id)}
     {#if id === "toggler"}
     <SidebarIcon {icon} {tip} on:click = {toggleDarkMode}
