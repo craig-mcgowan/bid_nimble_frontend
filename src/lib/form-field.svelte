@@ -1,11 +1,13 @@
 <script>
-  export let type, id, fieldName
+  export let type, id, fieldName, label , value = "", styling
 </script>
 <div>
-  <label for="name">{fieldName}</label>
-  <input type={type} 
+  {#if label}
+    <label for="name">{label}:</label>
+  {/if}
+  <input class= {styling} type={type} 
   name={fieldName}
-  value = ""
+  value = {value}
   />
 
 </div>
