@@ -38,4 +38,8 @@
   .text-field {
     @apply border-black rounded-lg m-2 border hover:border-blue-400 active:ring-2 active:ring-blue-500
   }
+
+  input {
+    @apply hover:border-cyan-600
+  }
 }

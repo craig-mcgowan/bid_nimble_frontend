@@ -1,9 +1,9 @@
-import { writable } from "svelte/store";
+import { writable, derived } from "svelte/store";
 
 export const trades = writable([])
 
 
-const fetchTrades = async() => {
+export const fetchTrades = async() => {
   const url = `https://bidnimble-api.herokuapp.com/trade`;
   const res = await fetch(url, {
     method: "get",
@@ -14,3 +14,7 @@ const fetchTrades = async() => {
 }
 
 fetchTrades()
+
+export const tradeNames = derived(trades, $trades=>$trades.map(trade=>trade.name))
+export const visibleTrades = writable([])
+
