@@ -2,25 +2,27 @@
   import FormField from "$lib/form-field.svelte";
   import Form from "$lib/form.svelte";  
   import { element } from "svelte/internal";
-  import { trades, visibleTrades } from "../stores/scopeStore";
+  import { trades, visibleTrades, fetchTrades } from "../stores/scopeStore";
   import CandleLogo from "./candle-logo.svelte";
   import FaLongArrowAltLeft from "svelte-icons/fa/FaLongArrowAltLeft.svelte"
+  export let updateTrade
   
   
-  console.log($trades)
+  console.log(updateTrade)
 
   const createScopeItem = (section) => {
-    console.log('section:', section)
+    //console.log('section:', section)
     section.scopeItems = [...section.scopeItems, {item: "", unit: "EACH", rate: 0  }]
-    console.log('section:', section)
+    //console.log('section:', section)
     trades.set($trades)
   }
 
-  const deleteScopeItem= (section, scopeItem) => {
-    console.log('scopeItems:', section.scopeItems)
-    console.log('item:', scopeItem)
+  const deleteScopeItem= ( section, scopeItem, trade) => {
+    //console.log('scopeItems:', section.scopeItems)
+    //console.log('item:', scopeItem)
     section.scopeItems = section.scopeItems.filter(item => item.item != scopeItem.item )
-    console.log(section.scopeItems)
+    updateTrade(trade)
+    fetchTrades()
     trades.set($trades)
   }
 
@@ -72,7 +74,7 @@
           <span> $<input type="text" class=" w-20 ml-1 border border-black shadow-lg rounded" bind:value={scopeItem.rate}/></span>
         </div>
         <div class = " align-top flex justify-end ">
-          <button on:click={()=>deleteScopeItem(scopeSection, scopeItem)} class=" text-red-200 inline-block align-top px-0 pt-0 pb-[3px] w-6 hover:text-red-600 ">x</button>
+          <button on:click={()=>deleteScopeItem(scopeSection, scopeItem, trade)} class=" text-red-200 inline-block align-top px-0 pt-0 pb-[3px] w-6 hover:text-red-600 ">x</button>
         </div>
       
       {/each}

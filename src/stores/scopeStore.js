@@ -18,3 +18,5 @@ fetchTrades()
 export const tradeNames = derived(trades, $trades=>$trades.map(trade=>trade.name))
 export const visibleTrades = writable([])
 
+export const isChecked = writable(false)
+

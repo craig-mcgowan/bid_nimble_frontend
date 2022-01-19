@@ -1,17 +1,21 @@
 <script>
-  import { trades, tradeNames, visibleTrades } from "../stores/scopeStore"
-
-  $: console.log($tradeNames)
-  
+  import { trades, tradeNames, visibleTrades, isChecked } from "../stores/scopeStore"  
 
   let selectedTrades = new Set();
+
+
 
   const setVisibleTrades = (selection)=>{
     visibleTrades.set(Array.from(selection))
   }
 
   $: setVisibleTrades(selectedTrades)
+  $: if (!$visibleTrades.length) { 
+    selectedTrades.clear()
+    }
 
+  $: console.log($isChecked)
+  
   const onCheckTrade = event => {
     if (event.target.checked) {
       selectedTrades.add(event.target.value);
@@ -21,25 +25,27 @@
     selectedTrades = selectedTrades;
     console.log(selectedTrades)
   };
-
+  
   const onSelectAll = event => {
     if (event.target.checked) {
       selectedTrades = new Set($tradeNames);
+      isChecked.set(true)
     } else {
       selectedTrades.clear();
+      isChecked.set(false)
     }
     selectedTrades = selectedTrades;
     console.log(selectedTrades)
   };
-
+  
 </script>
 
 <div class= "container h-full w-80 border-sky-600 bg-neutral-100 border-2 rounded shadow p-3 shadow-zinc-800"> 
   <h2 class="mb-5  tracking-wide text-center text-2xl  ">Trades</h2>
   <div class="mt-5 container mx-auto h-11/12 w-full bg-white ring-1  rounded p-2 hover:overflow-auto">
     <label class="" >
-      <input type="checkbox" checked={selectedTrades.size === trades.length} on:change={onSelectAll} name="select-all" class="peer mb-3">
-      <span class=" peer-checked:font-bold mb-">
+      <input type="checkbox" checked={$isChecked} on:change={onSelectAll} name="select-all" class="peer mb-3">
+      <span class="isCpeer-checked:font-bold mb-">
         Select All
       </span>
     </label>
