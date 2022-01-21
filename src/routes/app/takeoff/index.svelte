@@ -2,13 +2,16 @@
   import Table from "$lib/table.svelte";
   import TradeSelector from "$lib/trade-selector.svelte";
   import { trades, fetchTrades, visibleTrades, isChecked } from "../../../stores/scopeStore";
+  //const dbURL = "https://bidnimble-api.herokuapp.com"
+  const dbURL = "http://localhost:4000/"
+
   
   const updateTrade = async(trade) => {
     //console.log(trade)
     //iterate over stored array of trades
     const sendTrade = JSON.stringify(trade)
     //console.log(sendTrade)
-    const res = await fetch(`https://bidnimble-api.herokuapp.com/trade/${trade._id}`, {
+    const res = await fetch(`${dbURL}/trade/${trade._id}`, {
       "method": "put",
       "headers": {"Content-Type": "application/json"},
       "body": sendTrade,

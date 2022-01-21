@@ -1,14 +1,17 @@
-import { writable, derived } from "svelte/store";
+import { writable, derived, readable } from "svelte/store";
 
+const URL = 'https://bidnimble-api.herokuapp.com';
 export const trades = writable([])
+export const dbURL = readable(URL);
+
+
 
 
 export const fetchTrades = async() => {
-  const url = `https://bidnimble-api.herokuapp.com/trade`;
-  const res = await fetch(url, {
-    method: "get",
-    headers: {"Access-Control-Allow-Origin": "*"}
-  })
+  const res = await fetch(`https://bidnimble-api.herokuapp.com/trade`, {
+		method: 'get',
+		headers: { 'Access-Control-Allow-Origin': '*' }
+	});
   const data = await res.json()
   trades.set(data)
 }

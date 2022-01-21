@@ -27,6 +27,10 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"cookie": "^0.4.1",
+		"googleapis": "^92.0.0",
+		"jsonwebtoken": "^8.5.1",
+		"sk-auth": "^0.4.0",
 		"svelte-icons": "^2.1.0"
 	}
 }
