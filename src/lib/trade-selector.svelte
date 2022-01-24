@@ -1,9 +1,17 @@
 <script>
-  import { trades, tradeNames, visibleTrades, isChecked } from "../stores/scopeStore"  
+  import FaBuilding from "svelte-icons/fa/FaBuilding.svelte";
+import FaLongArrowAltLeft from "svelte-icons/fa/FaLongArrowAltLeft.svelte";
+import { trades, tradeNames, visibleTrades, isChecked, newTrades } from "../stores/scopeStore"  
+import CandleLogo from "./candle-logo.svelte";
 
   let selectedTrades = new Set();
 
-
+  const newTrade = {
+    name: '',
+    scopeSections: [{name:"", scopeItems: [{item: "", unit:"", rate:""}]}],
+    userId: 1,
+    laborRate: ''
+  };
 
   const setVisibleTrades = (selection)=>{
     visibleTrades.set(Array.from(selection))
@@ -37,11 +45,22 @@
     selectedTrades = selectedTrades;
     console.log(selectedTrades)
   };
+
+  const handleNewTrade = () => {
+    newTrades.set([...$newTrades, {
+    name: '',
+    scopeSections: [{name:"", scopeItems: [{item: "", unit:"", rate:""}]}],
+    userId: 1,
+    laborRate: ''
+  }])
+    console.log($newTrades)
+  }
   
 </script>
 
 <div class= "container h-full w-80 border-sky-600 bg-neutral-100 border-2 rounded shadow p-3 shadow-zinc-800"> 
   <h2 class="mb-5  tracking-wide text-center text-2xl  ">Trades</h2>
+  <button class = "green-btn" on:click={()=>handleNewTrade()}>New Trade</button>
   <div class="mt-5 container mx-auto h-11/12 w-full bg-white ring-1  rounded p-2 hover:overflow-auto">
     <label class="" >
       <input type="checkbox" checked={$isChecked} on:change={onSelectAll} name="select-all" class="peer mb-3">

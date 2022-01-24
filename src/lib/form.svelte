@@ -12,5 +12,5 @@
 
 <form on:submit|preventDefault={onSubmit}>
   <slot></slot>
-  <button type="submit">Submit</button>
+  <button class="green-btn" type="submit">Submit</button>
 </form>

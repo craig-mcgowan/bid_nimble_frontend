@@ -4,9 +4,6 @@ const URL = 'https://bidnimble-api.herokuapp.com';
 export const trades = writable([])
 export const dbURL = readable(URL);
 
-
-
-
 export const fetchTrades = async() => {
   const res = await fetch(`https://bidnimble-api.herokuapp.com/trade`, {
 		method: 'get',
@@ -17,6 +14,9 @@ export const fetchTrades = async() => {
 }
 
 fetchTrades()
+
+export const  newTrades = writable([]);
+
 
 export const tradeNames = derived(trades, $trades=>$trades.map(trade=>trade.name))
 export const visibleTrades = writable([])
