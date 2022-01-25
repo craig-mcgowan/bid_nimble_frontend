@@ -11,7 +11,9 @@
       <h1 class = "align-middle self-center font-logo text-5xl text-gray-500 group-hover:text-indigo-500 dark:text-yellow-200 cursor-pointer transition-nonem dark:group-hover:text-yellow-400">bid<span class="font-logo2 text-5xl">Nimble</span></h1>
     </div>
     <div class= "login flex justify-between w-60 content-center"> 
-      <button on:click={() => goto("/")} class='self-center w-28 h-2/3 text-white bg-violet-700 hover:bg-violet-500 rounded-xl'>Logout</button>
+      <a rel="external" href="/logout"> 
+        <button on:click={() => goto("/")} class='self-center w-28 h-2/3 text-white bg-violet-700 hover:bg-violet-500 rounded-xl'>Logout</button>
+      </a>
     </div> 
   </slot>
 </header>

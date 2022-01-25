@@ -14,7 +14,7 @@
   $: iconsArr = [ 
     {id:"estimates/new", icon: FaPlus, tip: "New Estimate"},
     {id:"takeoff", icon: MdFlightTakeoff , tip: "Takeoff Sheet"},
-    {id:"estimates", icon: FaBuilding, tip: "Your Estimates"},
+    {id:"estimates", icon: FaBuilding, tip: "Your Estimates" },
     {id: "toggler", icon: togglerIcon, tip: togglerTip}
   ] 
 
@@ -40,12 +40,12 @@
 
 <div class="fixed top-0 left-0 z-10 h-screen w-16 bg-white bg-opacity-70 dark:bg-gray-600 shadow-md pt-20 hover:w-48 hover:shadow-lg transition-[width] delay-300">
   <div class = " h-screen justify-start content-start">
-    {#each iconsArr as {icon, tip, id} (id)}
+    {#each iconsArr as {icon, tip, id, path} (id)}
     {#if id === "toggler"}
-    <SidebarIcon {icon} {tip} on:click = {toggleDarkMode}
+    <SidebarIcon {icon} {tip}  on:click = {toggleDarkMode}
     /> 
     {:else}
-    <SidebarIcon {icon} {tip} on:click = {() => clickHandler(id)}/>
+    <SidebarIcon {icon} {tip} {id} on:click = {() => clickHandler(id)}/>
 
     {/if}
     

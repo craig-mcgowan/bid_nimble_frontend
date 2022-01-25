@@ -2,7 +2,6 @@
   import Form from "./form.svelte";
   export let newTrade
 
-
 </script>
 
 <div>
