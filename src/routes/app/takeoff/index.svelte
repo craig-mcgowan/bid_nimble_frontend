@@ -17,6 +17,7 @@
   }
 
   const createTrade = async(trade) => {
+    delete trade.id
     const sendTrade = JSON.stringify(trade)
     console.log(sendTrade)
     const res = await fetch(`${dbURL}/trade`, {
@@ -43,8 +44,7 @@
     <Table {updateTrade} {dbURL} />
   </div>
   <button  on:click= {()=> handleTradeUpdate() } class = "absolute right-4 top-32 purple-btn">Save</button>
-  <button class = "absolute right-4 top-44 purple-btn">New Trade</button>
-  <button class = "absolute right-4 top-56 purple-btn">New Scope Section</button>
+
   
   
 </div>

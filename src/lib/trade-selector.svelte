@@ -1,17 +1,11 @@
 <script>
   import FaBuilding from "svelte-icons/fa/FaBuilding.svelte";
 import FaLongArrowAltLeft from "svelte-icons/fa/FaLongArrowAltLeft.svelte";
-import { trades, tradeNames, visibleTrades, isChecked, newTrades } from "../stores/scopeStore"  
+import { trades, tradeNames, visibleTrades, isChecked, newTrades, newTradeKey } from "../stores/scopeStore"  
 import CandleLogo from "./candle-logo.svelte";
 
   let selectedTrades = new Set();
 
-  const newTrade = {
-    name: '',
-    scopeSections: [{name:"", scopeItems: [{item: "", unit:"", rate:""}]}],
-    userId: 1,
-    laborRate: ''
-  };
 
   const setVisibleTrades = (selection)=>{
     visibleTrades.set(Array.from(selection))
@@ -47,11 +41,13 @@ import CandleLogo from "./candle-logo.svelte";
   };
 
   const handleNewTrade = () => {
+    newTradeKey.update(n => n+1 )
     newTrades.set([...$newTrades, {
     name: '',
     scopeSections: [{name:"", scopeItems: [{item: "", unit:"", rate:""}]}],
     userId: 1,
-    laborRate: ''
+    laborRate: '',
+    id: $newTradeKey
   }])
     console.log($newTrades)
   }
@@ -75,6 +71,8 @@ import CandleLogo from "./candle-logo.svelte";
         {trade.name}
       </div>
     </label>
+    {:else}
+      <p>No trades yet, start by clicking the new trade button now.</p>
     {/each}
   </div>
   </div>

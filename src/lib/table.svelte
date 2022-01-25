@@ -8,8 +8,11 @@
   import CandleLogo from "./candle-logo.svelte";
   import FaLongArrowAltLeft from "svelte-icons/fa/FaLongArrowAltLeft.svelte"
   import FaEdit from "svelte-icons/fa/FaEdit.svelte";
+  import {scale, fade, slide} from "svelte/transition"
+
   export let updateTrade
   export let dbURL
+  let editableTrade= false
 
 
   const createScopeItem = (section) => {
@@ -24,11 +27,14 @@
     //console.log('item:', scopeItem)
     section.scopeItems = section.scopeItems.filter(item => item.item != scopeItem.item )
     updateTrade(trade)
+    borderRed=false
     fetchTrades()
     trades.set($trades)
+
   }
 
   const deleteTrade = async(trade, newTrade = false) => {
+    hovRed= false
     if (newTrade) {
       newTrades.set($newTrades.filter(item => item != trade))
     } else {
@@ -46,19 +52,29 @@
   }
 
   let hovRed = false
-  $: if (!$newTrades.length) {hovRed = false}
-  $: console.log(hovRed)
+  let borderRed = false
+  let thisNewTrade
 
-  let editableTrade
+  let unsaved = true; // document has changes to save
+
+  const beforeUnload = () => {
+    if (unsaved = true) {
+      alert("Are you sure you want to leave, you have unsaved changes")
+    }
+  }
+
+
 </script>
+
+<svelte:window on:beforeunload|preventDefault={beforeUnload}/> 
 
 {#if $visibleTrades.length || $newTrades.length}
   <div class = "w-11/12 bg-neutral-100 border-sky-600 border-2 rounded-md shadow-zinc-900 shadow-md rounded-t-md p-3">
     {#if $newTrades.length}
     <h1>New Trades</h1>
     {/if}
-    {#each $newTrades as trade, i}
-      <div class= "bg-white grid gap-y-1  rounded my-1 p-2 grid-cols-8 group" class:hovRed={hovRed===i}>
+    {#each $newTrades as trade, i (trade.id)}
+      <div transition:slide class= "bg-white grid gap-y-1  rounded my-1 p-2 grid-cols-8 group" class:hovRed={hovRed===trade.id}>
         <div class="col-span-8  py-1 font-bold pl-2 flex justify-between" >
           <span>
               <input id="trade"  class="w-96 bg-opacity-50 rounded bg-blue-50 focus:bg-opacity-100 focus:bg-white mr-2 pr-1" type="text" placeholder="Trade Name Here" bind:value = {trade.name}>
@@ -70,45 +86,49 @@
             </div>
           </span>
           <span>
-            <button on:click={()=>deleteTrade(trade, true)} class=" text-red-200 inline-block align-top px-0 pt-0 pb-[3px] w-3 hover:text-white " on:mouseenter = {()=> hovRed=i} on:mouseleave={()=>hovRed=false} ><FaTrashAlt/></button>
+            <button on:click={()=>deleteTrade(trade, true)} class=" text-red-200 inline-block align-top px-0 pt-0 pb-[3px] w-3 hover:text-white " on:mouseenter = {()=> hovRed=trade.id} on:mouseleave={()=>hovRed=false} ><FaTrashAlt/></button>
           </span>
         </div>
       {#each trade.scopeSections as scopeSection, i }
         <div class= "bg-blue-50 col-span-8 my-1 font-medium text-gray-600 ">
           <input id="section"  class="w-96 bg-opacity-50 rounded bg-blue-50 focus:bg-opacity-100 focus:bg-white mr-2 pr-1" type="text" placeholder="Scope Section Name Here" bind:value = {scopeSection.name}>
         </div>
-        {#each scopeSection.scopeItems as scopeItem }
-          <div class="ml-2 peer col-span-5">
-            <input type="text" placeholder="Item Description" class="border w-11/12 border-black shadow-lg rounded pl-2" bind:value={scopeItem.item}/>
-          </div>
-          <div class = "peer">
-            <select name= "unit" placeholder="unit" bind:value={scopeItem.unit} class= "border border-black rounded">
-              <optgroup label="Time">
-                <option value="HR">HR </option>
-                <option value="DAY">DAY </option>
-                <option value="WEEK">WEEK </option>
-              </optgroup>
-              <optgroup label="Footage">  
-                <option value="LF">LF </option>
-                <option value="SF">SF </option>
-              </optgroup>
-              <optgroup label="Quantity/Lump Sum">
-                <option value="EACH">EACH </option>
-                <option value="LS">LS </option>
-              </optgroup>
-            </select>
-          </div>
-          <div class= "flex justify-between">
-            <!--todo bind value to time value times hourly rate -->
-            <span> $<input type="text" class=" w-20 ml-1 border border-black shadow-lg rounded" bind:value={scopeItem.rate}/></span>
-          </div>
-          <div class = " align-top flex justify-end ">
-            <button on:click={()=>deleteScopeItem(scopeSection, scopeItem, trade)} class=" text-red-200 inline-block align-top px-0 pt-0 pb-[3px] w-6 hover:text-red-600 ">x</button>
-          </div>
-        {/each}
-        <div class="">
-          <button class="font-bold  purple-btn ml-3 py-0" on:click={()=>createScopeItem(scopeSection)} >+</button>
+        {#each scopeSection.scopeItems as scopeItem, index }
+                  <div class="ml-2 col-span-5" >
+          <input type="text" placeholder="Item Description" class:borderRed={borderRed===index && thisNewTrade ===trade.id}
+        class="border w-11/12 border-black shadow-lg bg-opacity-50 h-full rounded pl-2" bind:value={scopeItem.item}/>
         </div>
+        <div >
+          <select name= "unit" placeholder="unit" class:borderRed={borderRed===index && thisNewTrade ===trade.id} bind:value={scopeItem.unit} class= "border border-black h-full rounded">
+            <optgroup label="Time">
+              <option value="HR">HR </option>
+              <option value="DAY">DAY </option>
+              <option value="WEEK">WEEK </option>
+            </optgroup>
+            <optgroup label="Footage">  
+              <option value="LF">LF </option>
+              <option value="SF">SF </option>
+            </optgroup>
+            <optgroup label="Quantity/Lump Sum">
+              <option value="EACH">EACH </option>
+              <option value="LS">LS </option>
+            </optgroup>
+          </select>
+        </div>
+        <div class= "flex justify-between">
+          <!--todo bind value to time value times hourly rate -->
+          <span> $<input type="text" class:borderRed={borderRed===index && thisNewTrade ===trade.id} class=" w-20 ml-1 border border-black shadow-lg rounded" bind:value={scopeItem.rate}/></span>
+        </div>
+        <div class = " align-top flex justify-end " class:hovRed={hovRed===scopeItem._id}>
+          <button on:click={()=>deleteScopeItem(scopeSection, scopeItem, trade)} class=" text-red-200 inline-block align-top px-0 pt-0 pb-[3px] w-6 hover:text-red-600 " on:mouseenter={()=>{
+            borderRed=index
+            thisNewTrade=trade.id
+            }} on:mouseleave={()=>{
+              borderRed=false
+              thisNewTrade= null}}>x</button>
+        </div>
+        {/each}
+
         {/each}
       </div>
       {/each}
@@ -118,9 +138,13 @@
     {#if $visibleTrades.length}
       <h3>My Trades</h3>      
     {/if}
-    <!-- Existing Trades -->
-    {#each $trades as trade, i}
-    <div class= {`grid gap-y-1 bg-white rounded my-1 p-2 grid-cols-8 ${$visibleTrades.includes(trade.name)? "": "hidden"}`} class:hovRed = {hovRed===trade._id}>
+
+
+
+    <!-- -----------------------------Existing Trades --------------------------------- -->
+
+    {#each $trades as trade (trade._id)}
+    <div transition:slide class= {`grid gap-y-1 bg-white rounded my-1 p-2 grid-cols-8 ${$visibleTrades.includes(trade.name)? "": "hidden"}`} class:hovRed = {hovRed===trade._id}>
       <div class= " col-span-8  py-1 font-bold pl-2 flex justify-between">
         <span>
           <input id="trade"  class="border disabled:border-none border-black bg-white w-96  rounded focus:bg-opacity-100 focus:bg-white mr-2 pr-1" type="text" placeholder="Trade Name Here" bind:value = {trade.name} disabled= {trade._id != editableTrade}>
@@ -143,11 +167,12 @@
         </div>
       </div>
       {#each scopeSection.scopeItems as scopeItem }
-        <div class="ml-2 col-span-5" class:hovRed={hovRed===scopeItem._id}>
-          <input type="text" placeholder="Item Description" class="border w-11/12 border-black shadow-lg bg-opacity-50 h-full rounded pl-2" bind:value={scopeItem.item}/>
+        <div class="ml-2 col-span-5" >
+          <input type="text" placeholder="Item Description" class:borderRed={borderRed===scopeItem._id}
+        class="border w-11/12 border-black shadow-lg bg-opacity-50 h-full rounded pl-2" bind:value={scopeItem.item}/>
         </div>
-        <div class:hovRed={hovRed===scopeItem._id} >
-          <select name= "unit" placeholder="unit" bind:value={scopeItem.unit} class= "border border-black h-full rounded">
+        <div >
+          <select name= "unit" placeholder="unit" class:borderRed={borderRed===scopeItem._id} bind:value={scopeItem.unit} class= "border border-black h-full rounded">
             <optgroup label="Time">
               <option value="HR">HR </option>
               <option value="DAY">DAY </option>
@@ -163,12 +188,12 @@
             </optgroup>
           </select>
         </div>
-        <div class= "flex justify-between" class:hovRed={hovRed===scopeItem._id}>
+        <div class= "flex justify-between">
           <!--todo bind value to time value times hourly rate -->
-          <span> $<input type="text" class=" w-20 ml-1 border border-black shadow-lg rounded" bind:value={scopeItem.rate}/></span>
+          <span> $<input type="text" class:borderRed={borderRed===scopeItem._id} class=" w-20 ml-1 border border-black shadow-lg rounded" bind:value={scopeItem.rate}/></span>
         </div>
         <div class = " align-top flex justify-end " class:hovRed={hovRed===scopeItem._id}>
-          <button on:click={()=>deleteScopeItem(scopeSection, scopeItem, trade)} class=" text-red-200 inline-block align-top px-0 pt-0 pb-[3px] w-6 hover:text-red-600 " on:mouseenter={()=>hovRed=scopeItem._id} on:mouseleave={()=>hovRed=false}>x</button>
+          <button on:click={()=>deleteScopeItem(scopeSection, scopeItem, trade)} class=" text-red-200 inline-block align-top px-0 pt-0 pb-[3px] w-6 hover:text-red-600 " on:mouseenter={()=>borderRed=scopeItem._id} on:mouseleave={()=>borderRed=false}>x</button>
         </div>
       
       {/each}
@@ -197,5 +222,8 @@
 <style>
   .hovRed {
     @apply bg-red-400
+  }
+  .borderRed {
+    @apply border-red-600 border-2
   }
 </style>
