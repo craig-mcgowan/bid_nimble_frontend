@@ -47,7 +47,7 @@
 </div>  
   <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-20 ">
     <video 
-    src='../src/lib/bidnimble-bg.mov'
+    src='https://res.cloudinary.com/dm9ig1vtk/video/upload/v1643237932/reversedVideo_sacdrv.mov'
     autoplay
     playbackRate=3
     muted
