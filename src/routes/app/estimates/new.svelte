@@ -67,7 +67,7 @@
 </form>
 {:else}
 <div class= "container flex ">
-  <EstimateSelector newEstimate=true/>
+  <TradeSelector newEstimate=true/>
   <div class=" w-10/12 pl-4">
     <EstimateTable {updateEstimate} {dbURL} />
   </div>
