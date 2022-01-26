@@ -28,8 +28,8 @@
 </script>
 
 <div>
-  {#each estimates as {name, location, total}}
-    <ProjectCard {name} {location} {total}/>
+  {#each estimates as estimate}
+    <ProjectCard {...estimate}/>
   {:else}
     <h2>You don't have any estimates yet</h2>
   {/each}

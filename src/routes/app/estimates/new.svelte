@@ -20,12 +20,12 @@
 
   console.log($session.user)
 
-  const updateTrade = async(trade) => {
-    const sendTrade = JSON.stringify(trade)
-    const res = await fetch(`${dbURL}/trade/${trade._id}`, {
+  const updateEstimate = async(estimate) => {
+    const sendEstimate = JSON.stringify(estimate)
+    const res = await fetch(`${dbURL}/estimate/${estimate._id}`, {
       "method": "put",
       "headers": {"Content-Type": "application/json"},
-      "body": sendTrade,
+      "body": sendEstimate,
     })
     console.log(res)
   }
@@ -50,13 +50,9 @@
     }
   }
 
-  const handleTradeUpdate = () => {
-    $newTrades.forEach(trade => createTrade(trade))
-    $trades.forEach(trade =>updateTrade(trade))
+  const handleEstimateUpdate = () => {
+    updateEstimate()
     fetchTrades()
-    isChecked.set(false)
-    visibleTrades.set([])
-    newTrades.set([])
   }
 
 </script>
@@ -71,11 +67,11 @@
 </form>
 {:else}
 <div class= "container flex ">
-  <TradeSelector newEstimate=true/>
+  <EstimateSelector newEstimate=true/>
   <div class=" w-10/12 pl-4">
-    <EstimateTable {updateTrade} {dbURL} />
+    <EstimateTable {updateEstimate} {dbURL} />
   </div>
-  <button  on:click= {()=> handleTradeUpdate() } class = "absolute right-4 top-32 purple-btn">Save</button>
+  <button  on:click= {()=> handleEstimateUpdate() } class = "absolute right-4 top-32 purple-btn">Save</button>
     
 </div>
 
