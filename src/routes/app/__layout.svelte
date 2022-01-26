@@ -1,6 +1,6 @@
 <script>
 	import '../../app.css';
-	import Header from '$lib/header.svelte'
+	import Header from '$lib/Header.svelte'
 	import Sidebar from '$lib/sidebar.svelte'
 	let dark = false
 
