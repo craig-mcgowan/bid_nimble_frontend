@@ -54,10 +54,10 @@ import CandleLogo from "./candle-logo.svelte";
   
 </script>
 
-<div class= "container h-full w-80 border-sky-600 bg-neutral-100 border-2 rounded shadow p-3 shadow-zinc-800"> 
+<div class= "container h-full w-80 border-sky-600 bg-neutral-100 dark:bg-slate-500 border-2 rounded shadow p-3 shadow-zinc-800"> 
   <h2 class="mb-5  tracking-wide text-center text-2xl  ">Trades</h2>
   <button class = "green-btn" on:click={()=>handleNewTrade()}>New Trade</button>
-  <div class="mt-5 container mx-auto h-11/12 w-full bg-white ring-1  rounded p-2 hover:overflow-auto">
+  <div class="mt-5 container mx-auto h-11/12 w-full bg-white dark:bg-slate-400 ring-1  rounded p-2 hover:overflow-auto">
     <label class="" >
       <input type="checkbox" checked={$isChecked} on:change={onSelectAll} name="select-all" class="peer mb-3">
       <span class="isCpeer-checked:font-bold mb-">
@@ -67,7 +67,7 @@ import CandleLogo from "./candle-logo.svelte";
     {#each $trades as trade}
     <label  class=" cursor-pointer  w-72">
       <input type="checkbox"  value={trade.name} checked={selectedTrades.has(trade.name)} on:change={onCheckTrade} class="peer hidden" >
-      <div class="pl-1  text-slate-400 hover:bg-sky-700 rounded hover:text-white  mt-1 peer-checked:text-sky-800 peer-checked:font-bold peer-checked:hover:bg-slate-100 peer-checked:hover:font-normal peer-checked:hover:text-slate-500 ">
+      <div class="pl-1  text-slate-400 dark:text-white hover:bg-sky-700 rounded hover:text-white  mt-1 peer-checked:text-sky-800 peer-checked:font-bold peer-checked:hover:bg-slate-100 peer-checked:hover:font-normal peer-checked:hover:text-slate-500 ">
         {trade.name}
       </div>
     </label>

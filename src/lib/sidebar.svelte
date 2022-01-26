@@ -38,7 +38,7 @@
 </script>
 
 
-<div class="fixed top-0 left-0 z-10 h-screen w-16 bg-white bg-opacity-70 dark:bg-gray-600 shadow-md pt-20 hover:w-48 hover:shadow-lg transition-[width] delay-300">
+<div class="fixed top-0 left-0 z-10 h-screen w-16 bg-white bg-opacity-70 dark:bg-gray-600 dark:bg-opacity-50 shadow-md pt-20 hover:w-48 hover:shadow-lg transition-[width] delay-300">
   <div class = " h-screen justify-start content-start">
     {#each iconsArr as {icon, tip, id, path} (id)}
     {#if id === "toggler"}

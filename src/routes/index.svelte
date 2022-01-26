@@ -1,3 +1,5 @@
+
+
 <script>
   import { onMount } from 'svelte';
   import * as animateScroll from "svelte-scrollto"
@@ -70,9 +72,10 @@
     <Carousel  />
   </div>
 
-
+{#await Carousel then }
+  
 <div id="login" class="mx-auto w-min flex content-center my-80">
-
+  
   <form on:submit|preventDefault class=" flex flex-col w-80 border-sky-900 border p-5 rounded-xl ">
     <label for="username">Username: </label>
     <input id="username" type="text" bind:value={login.username} >
@@ -85,6 +88,7 @@
     <button class="gray-btn w-56 flex justify-between hover:text-cyan-200 shadow shadow-slate-800"><span class="self-center">Login using Github</span> <span class="h-8"><FaGithubAlt/></span></button>
   </a>  
 </div>
+{/await}
 
 <footer class = "mt-10 pl-20">
   <p>by Craig McGowan</p>
