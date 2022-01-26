@@ -1,6 +1,6 @@
 <script>
 	import '../../app.css';
-	import Header from '../../lib/Header.svelte';
+	import NavBar from '../../lib/NavBar.svelte';
 	import Sidebar from '$lib/sidebar.svelte'
 	let dark = false
 
@@ -18,7 +18,7 @@ export async function load({page, session}) {
 <div class:dark>
 	<div  class= "h-full w-screen bg-fixed bg-cover bg-center dark:bg-gray-600 dark:text-white">
 		<Sidebar bind:dark/>
-		<Header bind:dark/>
+		<NavBar bind:dark/>
 		<main class="container pt-20 pl-20 pb-20 w-screen h" >
 			<slot></slot>
 		</main>
