@@ -1,22 +1,10 @@
-
-
 <script>
   import { onMount } from 'svelte';
   import * as animateScroll from "svelte-scrollto"
-  import { goto, invalidate, prefetch, prefetchRoutes } from '$app/navigation';
   import "../app.css";
   import CandleLogo from "$lib/candle-logo.svelte";
-  import { writable } from 'svelte/store';
-  import { session } from '$app/stores';
-  import Header from '$lib/Header.svelte';
-  import GoogleSignInButton from '$lib/GoogleSignInButton.svelte';
-  import Logout from '$lib/Logout.svelte'
-  import Form from '$lib/form.svelte';
   import FaGithubAlt from 'svelte-icons/fa/FaGithubAlt.svelte'
   let login = {username:"", password: ""}
-  import ConstructionMan from "$lib/construction-man.svelte"
-  import OfficeMan from '$lib/office-man.svelte';
-  import HomeMan from '$lib/home-man.svelte';
   import Carousel from '$lib/carousel/Carousel.svelte';
 
   let bgVideo

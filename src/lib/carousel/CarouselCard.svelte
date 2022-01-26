@@ -1,11 +1,5 @@
 <script>
   export let icon, description
-  import ConstructionMan from "$lib/construction-man.svelte"
-  import OfficeMan from '$lib/office-man.svelte';
-  import HomeMan from '$lib/home-man.svelte';
-
-  
-  
   
 </script>
 
