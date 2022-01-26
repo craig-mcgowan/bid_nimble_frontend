@@ -1,10 +1,12 @@
 <script>
-  import FaBuilding from "svelte-icons/fa/FaBuilding.svelte";
+import FaBuilding from "svelte-icons/fa/FaBuilding.svelte";
 import FaLongArrowAltLeft from "svelte-icons/fa/FaLongArrowAltLeft.svelte";
 import { trades, tradeNames, visibleTrades, isChecked, newTrades, newTradeKey } from "../stores/scopeStore"  
 import CandleLogo from "./candle-logo.svelte";
 
-  let selectedTrades = new Set();
+export let newEstimate = false
+
+let selectedTrades = new Set();
 
 
   const setVisibleTrades = (selection)=>{
@@ -56,7 +58,9 @@ import CandleLogo from "./candle-logo.svelte";
 
 <div class= "container h-full w-80 border-sky-600 bg-neutral-100 dark:bg-slate-500 border-2 rounded shadow p-3 shadow-zinc-800"> 
   <h2 class="mb-5  tracking-wide text-center text-2xl  ">Trades</h2>
+  {#if !newEstimate }
   <button class = "green-btn" on:click={()=>handleNewTrade()}>New Trade</button>
+  {/if}
   <div class="mt-5 container mx-auto h-11/12 w-full bg-white dark:bg-slate-400 ring-1  rounded p-2 hover:overflow-auto">
     <label class="" >
       <input type="checkbox" checked={$isChecked} on:change={onSelectAll} name="select-all" class="peer mb-3">

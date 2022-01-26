@@ -55,18 +55,9 @@
   let borderRed = false
   let thisNewTrade
 
-  let unsaved = true; // document has changes to save
-
-  const beforeUnload = () => {
-    if (unsaved = true) {
-      alert("Are you sure you want to leave, you have unsaved changes")
-    }
-  }
 
 
 </script>
-
-<svelte:window on:beforeunload|preventDefault={beforeUnload}/> 
 
 {#if $visibleTrades.length || $newTrades.length}
   <div class = "w-11/12 bg-neutral-100 border-sky-600 border-2 rounded-md shadow-zinc-900 shadow-md rounded-t-md p-3">

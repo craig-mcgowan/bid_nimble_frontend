@@ -12,7 +12,7 @@
     </div>
     <div class= "login flex justify-between w-60 content-center"> 
       <a class = "h-min self-center" rel="external" href="/logout"> 
-        <button on:click={() => goto("/")} class=' w-28 h-8 text-white bg-gradient-to-br from-green-300 to-green-400 hover:shadow hover:from-green-300 hover:to-green-300 rounded-xl'>Logout</button>
+        <button on:click={() => goto("/")} class=' w-28 h-8 text-white bg-gradient-to-br from-green-300 to-green-400 shadow hover:from-green-300 hover:to-green-300 rounded-xl'>Logout</button>
       </a>
     </div> 
   </slot>
