@@ -43,9 +43,10 @@
       </li>
     </ul>
   </nav>
-<div class="absolute top-0 left-0 w-full h-full bg-gradient-to-t -z-10 from-white via-transparent ">
+<div class="absolute top-0  left-0 w-full h-full bg-gradient-to-t -z-10 bg-opacity-100 from-white via-transparent ">
+
 </div>  
-  <div class="absolute top-0 left-0 w-full h-full brightness-95 contrast-125 overflow-hidden -z-20 ">
+  <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-20 ">
     <video 
     src='https://res.cloudinary.com/dm9ig1vtk/video/upload/v1643237932/reversedVideo_sacdrv.mov'
     autoplay
@@ -56,30 +57,31 @@
     bind:this={bgVideo}
     ></video>
   </div>
-  <div class="container mx-auto mt-20">
+  <div class="container mx-auto mt-40 mb-60">
     <Carousel  />
   </div>
 
-{#await Carousel then }
-  
-<div id="login" class="mx-auto w-min flex content-center my-80">
-  
-  <form on:submit|preventDefault class=" flex flex-col w-80 border-sky-900 border p-5 rounded-xl ">
-    <label for="username">Username: </label>
-    <input id="username" type="text" bind:value={login.username} >
-    <label for="password">Password: </label>
-    <input id="password" type="password" bind:value={login.password}>
-    <input type="submit" value="Login" class= "orange-btn w-28 self-center mt-3">
-  </form>
-  <div class="h-min self-center mx-4">or</div>
-   <a rel="external" href="/login" class="h-min self-center">
-    <button class="gray-btn w-56 flex justify-between hover:text-cyan-200 shadow shadow-slate-800"><span class="self-center">Login using Github</span> <span class="h-8"><FaGithubAlt/></span></button>
-  </a>  
-</div>
-{/await}
 
-<footer class = "mt-10 pl-20">
-  <p>by Craig McGowan</p>
-  <p>craigmcgowandev@gmail.com</p>
-</footer>
+<section class = "w-full bg-sky-800 h-full py-40 ">
+  <div id="login" class="mx-auto w-min flex bg-gray-100 p-4 rounded-xl content-center ">
+    
+    <form on:submit|preventDefault class=" flex flex-col w-80 border-sky-900 border p-5 rounded-xl ">
+      <label for="username">Username: </label>
+      <input id="username" type="text" bind:value={login.username} >
+      <label for="password">Password: </label>
+      <input id="password" type="password" bind:value={login.password}>
+      <input type="submit" value="Login" class= "orange-btn w-28 self-center mt-3">
+    </form>
+    <div class="h-min self-center mx-4">or</div>
+    <a rel="external" href="/login" class="h-min self-center">
+      <button class="gray-btn w-56 flex justify-between hover:text-cyan-200 shadow shadow-slate-800"><span class="self-center">Login using Github</span> <span class="h-8"><FaGithubAlt/></span></button>
+    </a>  
+  </div>
+</section>
+
+  
+  <footer class = "py-8 text-white bg-red-700 pl-20">
+    <p>by Craig McGowan</p>
+    <p>craigmcgowandev@gmail.com</p>
+  </footer>
 </main>
