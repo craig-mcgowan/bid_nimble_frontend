@@ -127,7 +127,7 @@ const removeTradeFromEstimate = (removedTrade) => {
   
 </script>
 
-<div class= "container h-full w-80 border-sky-600 bg-neutral-100 dark:bg-slate-500 border-2 rounded shadow p-3 shadow-zinc-800"> 
+<div class= "container h-full w-full border-sky-600 bg-neutral-100 dark:bg-slate-500 border-2 rounded shadow p-3 shadow-zinc-800"> 
   <h2 class="mb-5  tracking-wide text-center text-2xl  ">Trades</h2>
   {#if !estimatePage }
   <button class = "green-btn" on:click={()=>handleNewTrade()}>New Trade</button>

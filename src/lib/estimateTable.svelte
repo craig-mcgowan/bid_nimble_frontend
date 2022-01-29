@@ -1,17 +1,8 @@
 <script>
-  import FormField from "$lib/form-field.svelte";
-  import Form from "$lib/form.svelte";  
   import ScopeItemDropdown from "./scopeItemDropdown.svelte";
-  
-  import TradeForm from "./tradeForm.svelte";
-  import FaTrashAlt from "svelte-icons/fa/FaTrashAlt.svelte"
-  import { element } from "svelte/internal";
   import { trades, newTrades, visibleTrades, fetchTrades } from "../stores/scopeStore";
   import {currentEstimate, estimateData, fetchEstimates} from "../stores/estimateStore"
-  import CandleLogo from "./candle-logo.svelte";
   import FaLongArrowAltLeft from "svelte-icons/fa/FaLongArrowAltLeft.svelte"
-  import FaEdit from "svelte-icons/fa/FaEdit.svelte";
-  import {scale, fade, slide} from "svelte/transition"
   export let updateEstimate
    
   
@@ -48,20 +39,20 @@
     export let dbURL
     let editableTrade= false
 
-    const sumTotals = () => {
-      return $currentEstimate.trades
-      .flatMap(trades=> trades.sections)
-      .flatMap(trades=> trades.lineItems)
-      .reduce((sum, item) => sum + Number(item.total),0)
+  const sumTotals = () => {
+    return $currentEstimate.trades
+    .flatMap(trades=> trades.sections)
+    .flatMap(trades=> trades.lineItems)
+    .reduce((sum, item) => sum + Number(item.total),0)
       
-    }
+  }
 
-    $currentEstimate.total = sumTotals()
+  $currentEstimate.total = sumTotals()
     
-    const computeTotal= (param1, param2) => {
-      let total = Number(param1) * Number(param2)
-      return total? total.toString() : ""
-    }
+  const computeTotal= (param1, param2) => {
+    let total = Number(param1) * Number(param2)
+    return total? total.toString() : ""
+  }
     
     
     const getTakeOffItems = (trade, section) =>{
@@ -228,7 +219,7 @@ const deleteScopeItem= ( section, lineItem) => {
       </div>
       <div class= "flex justify-between">
 
-        <span> $<input type="text" class:borderRed={borderRed===lineItem._id} class=" w-20 ml-1 border border-black shadow-lg rounded" bind:value={lineItem.rate} on:input={()=> {
+        <span> $<input type="text" class:borderRed={borderRed===lineItem._id} class=" w-16 ml-1 border border-black shadow-lg rounded" bind:value={lineItem.rate} on:input={()=> {
           lineItem.total = computeTotal(
             lineItem.quantity, lineItem.rate, lineItem)
           $currentEstimate.total= sumTotals()
@@ -236,7 +227,7 @@ const deleteScopeItem= ( section, lineItem) => {
           </span>
       </div>
       <div>
-        <span> $<input type="text" class:borderRed={borderRed===lineItem._id} class=" w-20 ml-1 border border-black shadow-lg rounded" bind:value={lineItem.total}/></span>
+        <span> $<input type="text" class:borderRed={borderRed===lineItem._id} class=" w-16 ml-1 border border-black shadow-lg rounded" bind:value={lineItem.total}/></span>
       </div>
       <div class = " align-top flex justify-end " class:hovRed={hovRed===lineItem._id}>
       <button on:click={()=>deleteScopeItem(section, lineItem, trade)} class=" text-red-200 inline-block align-top px-0 pt-0 pb-[3px] w-6 hover:text-red-600 " on:mouseenter={()=>borderRed=lineItem._id} on:mouseleave={()=>borderRed=false}>x</button>

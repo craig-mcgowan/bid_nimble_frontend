@@ -29,7 +29,7 @@
   import { currentEstimate, estimateData, fetchEstimate} from "../../../stores/estimateStore";
   import { visibleTrades } from "../../../stores/scopeStore";
   import { page } from "$app/stores";
-import EstimateDetails from "$lib/estimateDetails.svelte";
+  import EstimateDetails from "$lib/estimateDetails.svelte";
   export let estimate
 
 
@@ -69,11 +69,11 @@ import EstimateDetails from "$lib/estimateDetails.svelte";
 
 </script>
 
-<div class= " grid grid-cols-11 mx-auto h-full">
-  <div class="col-span-2">
+<div class= " grid grid-cols-12 mx-auto h-full">
+  <div class="col-span-3 ">
     <TradeSelector  {updateEstimate} estimatePage=true />
   </div>
-  <div class="col-span-6 pl-4">
+  <div class="col-span-7 pl-4">
     <EstimateTable {fetchEstimate} {updateEstimate} />
   </div>
   <div class=" bg-neutral-100 dark:bg-slate-500 border-sky-600 border-2 rounded-md shadow-zinc-900 shadow-md col-span-2 ml-4 h-min mt-5 ">
