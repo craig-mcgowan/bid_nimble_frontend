@@ -5,7 +5,7 @@
   const dbURL = "https://bidnimble-api.herokuapp.com"
   import {session} from "$app/stores"
 
-
+  visibleTrades.set([])
   console.log($session.user)
 
   const updateTrade = async(trade) => {

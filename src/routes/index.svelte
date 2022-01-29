@@ -29,7 +29,7 @@
 
 
 <main class = "  ">
-  <nav class = " pl-20 flex justify-between backdrop-blur-lg bg-blend-sof-light bg-white bg-opacity-10 shadow-sm">
+  <nav class = " pl-20 flex justify-between backdrop-blur-lg bg-blend-soft-light bg-slate-200 bg-opacity-40 shadow-sm">
     <div class="flex justify-between content-center group">
       <CandleLogo />
       <h1 class = "align-middle self-center font-logo text-5xl text-gray-500 group-hover:text-indigo-500 dark:text-yellow-200 cursor-pointer transition-nonem dark:group-hover:text-yellow-400">bid<span class="font-logo2 text-5xl">Nimble</span></h1>
@@ -43,9 +43,9 @@
       </li>
     </ul>
   </nav>
-<div class="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-white via-transparent -z-10">
+<div class="absolute top-0 left-0 w-full h-full bg-gradient-to-t -z-10 from-white via-transparent ">
 </div>  
-  <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-20 ">
+  <div class="absolute top-0 left-0 w-full h-full brightness-95 contrast-125 overflow-hidden -z-20 ">
     <video 
     src='https://res.cloudinary.com/dm9ig1vtk/video/upload/v1643237932/reversedVideo_sacdrv.mov'
     autoplay
@@ -72,7 +72,7 @@
     <input type="submit" value="Login" class= "orange-btn w-28 self-center mt-3">
   </form>
   <div class="h-min self-center mx-4">or</div>
-  <a rel="external" href="/login" class="h-min self-center">
+   <a rel="external" href="/login" class="h-min self-center">
     <button class="gray-btn w-56 flex justify-between hover:text-cyan-200 shadow shadow-slate-800"><span class="self-center">Login using Github</span> <span class="h-8"><FaGithubAlt/></span></button>
   </a>  
 </div>

@@ -59,13 +59,15 @@
 
 </script>
 
+
+
 {#if $visibleTrades.length || $newTrades.length}
   <div class = "w-11/12 bg-neutral-100 border-sky-600 border-2 rounded-md shadow-zinc-900 shadow-md rounded-t-md p-3">
     {#if $newTrades.length}
     <h1>New Trades</h1>
     {/if}
     {#each $newTrades as trade, i (trade.id)}
-      <div transition:slide class= "bg-white grid gap-y-1  rounded my-1 p-2 grid-cols-8 group" class:hovRed={hovRed===trade.id}>
+      <div in:slide out:fade class= "bg-white grid gap-y-1  rounded my-1 p-2 grid-cols-8 group" class:hovRed={hovRed===trade.id}>
         <div class="col-span-8  py-1 font-bold pl-2 flex justify-between" >
           <span>
               <input id="trade"  class="w-96 bg-opacity-50 rounded bg-blue-50 focus:bg-opacity-100 focus:bg-white mr-2 pr-1" type="text" placeholder="Trade Name Here" bind:value = {trade.name}>
@@ -135,7 +137,7 @@
     <!-- -----------------------------Existing Trades --------------------------------- -->
 
     {#each $trades as trade (trade._id)}
-    <div transition:slide class= {`grid gap-y-1 bg-white rounded my-1 p-2 grid-cols-8 ${$visibleTrades.includes(trade.name)? "": "hidden"}`} class:hovRed = {hovRed===trade._id}>
+    <div in:slide out:fade class= {`grid gap-y-1 bg-white rounded my-1 p-2 grid-cols-8 ${$visibleTrades.includes(trade.name)? "": "hidden"}`} class:hovRed = {hovRed===trade._id}>
       <div class= " col-span-8  py-1 font-bold pl-2 flex justify-between">
         <span>
           <input id="trade"  class="border disabled:border-none border-black bg-white w-96  rounded focus:bg-opacity-100 focus:bg-white mr-2 pr-1" type="text" placeholder="Trade Name Here" bind:value = {trade.name} disabled= {trade._id != editableTrade}>

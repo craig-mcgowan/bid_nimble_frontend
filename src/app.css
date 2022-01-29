@@ -4,12 +4,9 @@
 @tailwind utilities;
 
 @layer components {
-  .last-sidebar-icon {
-    @apply fixed bottom-4 left-3.5 h-8 w-8 text-green-400 hover:bg-green-400
-  }
 
   .sidebar-icon {
-    @apply flex shadow-xl items-center pl-1 justify-start h-10 my-2 mx-2.5 bg-gray-500 text-orange-400  rounded-2xl hover:text-white hover:bg-orange-400 hover:animate-[hop_.5s_2]  last:last-sidebar-icon transition-all duration-200 ease-linear cursor-pointer  ;
+    @apply flex shadow-xl items-center pl-1 justify-start h-10 my-2 mx-2.5 bg-gray-500 text-orange-400  rounded-2xl hover:text-white hover:bg-orange-400 hover:animate-[hop_.5s_2] transition-all duration-200 ease-linear cursor-pointer  ;
   }
 
   .sidebar-tooltip {
@@ -33,16 +30,16 @@
     @apply border-2 rounded-lg px-3 py-0.5 text-green-500 border-green-500 bg-white hover:text-white hover:bg-green-400 transition-all duration-200 dark:bg-slate-500 dark:text-white; 
   }
   .orange-btn {
-    @apply border-2 rounded-lg px-3 py-0.5 text-orange-500 border-orange-500 bg-white hover:text-white hover:bg-orange-400 transition-all duration-200 dark:bg-slate-500; 
+    @apply border-2 rounded-lg px-3 py-0.5 text-orange-500 border-orange-500 bg-white hover:text-white hover:bg-orange-400 transition-all duration-200 ; 
   }
   .gray-btn {
     @apply  rounded-lg px-3 py-0.5 text-white  bg-gray-600 hover:bg-gray-900 transition-all duration-200 dark:bg-slate-500 dark:text-white; 
   }
   .text-field {
-    @apply border-black rounded-lg m-2 border hover:border-blue-400 active:ring-2 active:ring-blue-500
+    @apply border-black rounded-lg m-2 pl-2 border hover:border-blue-400 active:ring-2 active:ring-blue-500 dark:bg-slate-500
   }
 
   input {
-    @apply border border-slate-900 rounded hover:border-cyan-600
+    @apply border border-slate-900 rounded hover:border-cyan-600 dark:bg-opacity-0
   }
 }
