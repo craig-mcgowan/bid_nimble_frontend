@@ -1,38 +1,40 @@
-# create-svelte
+# bidNimble 
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+A Construction Estimating Web App by Craig McGowan
+https://bid-nimble.vercel.app/
 
-## Creating a project
+## Technologies Used
 
-If you're seeing this, you've probably already done this step. Congrats!
+ - Sveltekit
+ - Node/Express
+ - MongoDB
+ - Tailwind CSS
+ - Svelte-Carousel, Svelte-Scrollto
+ - Mdsvex
+ - Cloudinary
+ - Vercel
+ - Heroku
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+## Using The App
 
-# create a new project in my-app
-npm init svelte@next my-app
-```
+#### Once you've signed-in you'll be directed to you takeoff worksheet
+In your worksheet you can add trades and scope sections, and then assign
 
-> Note: the `@next` is temporary
+scope items to those trades with rates and units.
 
-## Developing
+After you build and save your takeoff worksheet, head over to your estimates
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+page or add a new estimate from dropdown in the header.
 
-```bash
-npm run dev
+Creating a new estimate is easy. Just select the trades's you'll need and 
+add scope items from your saved or new one-off items and quantities. You'll
+see the title here. 
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+You can view all your estimates in the estimates page.
 
-## Building
-
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
-
-```bash
-npm run build
-```
-
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+## Future Updates
+  - Responsive layouts
+  - Additional estimate details including contractor fees and line item fluff
+  - View your estimate in print view or export to csv.
+  - Additional improvements/stability
+  - Login with Google
