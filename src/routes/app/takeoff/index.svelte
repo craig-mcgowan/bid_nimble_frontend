@@ -41,8 +41,10 @@
 
 </script>
 <div class= "container flex ">
-  <TradeSelector/>
-  <div class=" w-10/12 pl-4">
+  <div class="w-1/6 container">
+    <TradeSelector/>
+  </div>
+  <div class="container w-10/12 pl-4">
     <Table {updateTrade} {dbURL} />
   </div>
   <button  on:click= {()=> handleTradeUpdate() } class = "absolute right-4 top-32 purple-btn">Save</button>
