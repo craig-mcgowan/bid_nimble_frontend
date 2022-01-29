@@ -40,6 +40,6 @@
   }
 
   input {
-    @apply border border-slate-900 rounded hover:border-cyan-600 dark:bg-opacity-0
+    @apply border border-slate-900 dark:bg-transparent rounded hover:border-cyan-600 dark:bg-none
   }
 }

@@ -29,8 +29,10 @@
   import { currentEstimate, estimateData, fetchEstimate} from "../../../stores/estimateStore";
   import { visibleTrades } from "../../../stores/scopeStore";
   import { page } from "$app/stores";
+import EstimateDetails from "$lib/estimateDetails.svelte";
   export let estimate
-  
+
+
 
   console.log($page)
   fetchEstimate($page.params.id) 
@@ -64,15 +66,19 @@
 
   }
 
+
 </script>
 
-<div class= "container flex ">
-  <TradeSelector {updateEstimate} estimatePage=true />
-  <div class=" w-10/12 pl-4">
-    <h1>{$estimateData.name}</h1>
+<div class= " grid grid-cols-11 mx-auto h-full">
+  <div class="col-span-2">
+    <TradeSelector  {updateEstimate} estimatePage=true />
+  </div>
+  <div class="col-span-6 pl-4">
     <EstimateTable {fetchEstimate} {updateEstimate} />
   </div>
-  <button  on:click= {()=> console.log('clicked') } class = "absolute right-4 top-32 purple-btn">Save</button>
+  <div class=" bg-neutral-100 dark:bg-slate-500 border-sky-600 border-2 rounded-md shadow-zinc-900 shadow-md col-span-2 ml-4 h-min mt-5 ">
+    <EstimateDetails {updateEstimate} />
+  </div>
     
 </div>
 <style>

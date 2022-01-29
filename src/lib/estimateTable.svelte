@@ -12,8 +12,8 @@
   import FaLongArrowAltLeft from "svelte-icons/fa/FaLongArrowAltLeft.svelte"
   import FaEdit from "svelte-icons/fa/FaEdit.svelte";
   import {scale, fade, slide} from "svelte/transition"
-  export let estimate, updateEstimate, fetchEstimate
-  
+  export let updateEstimate
+   
   
   let closed = true
   const openHandler = (section) => {
@@ -23,6 +23,7 @@
   function handleClickOutside(event) {
     closed = true
   }
+
   
   function clickOutside(node) {
     
@@ -46,11 +47,19 @@
     let showEstimate = false
     export let dbURL
     let editableTrade= false
-    
+
+    const sumTotals = () => {
+      return $currentEstimate.trades
+      .flatMap(trades=> trades.sections)
+      .flatMap(trades=> trades.lineItems)
+      .reduce((sum, item) => sum + Number(item.total),0)
+      
+    }
+
+    $currentEstimate.total = sumTotals()
     
     const computeTotal= (param1, param2) => {
       let total = Number(param1) * Number(param2)
-      console.log(total)
       return total? total.toString() : ""
     }
     
@@ -190,15 +199,23 @@ const deleteScopeItem= ( section, lineItem) => {
     {#each section.lineItems as lineItem }
       <div class="ml-2 col-span-4" >
         <input type="text" placeholder="Item Description" class:borderRed={borderRed===lineItem._id}
-        class="border w-11/12 border-black shadow-lg bg-opacity-50 h-full rounded pl-2" bind:value={lineItem.item} on:change={()=>lineItem = handleScopeSelection(trade, section, lineItem)} />
+        class="border w-11/12 border-black shadow-lg bg-opacity-50 h-full rounded pl-2" bind:value={lineItem.item} 
+        on:change={()=>{
+          lineItem = handleScopeSelection(trade, section, lineItem)
+          }} />
 
       </div>
       <div class="ml-2 col-span-1" >
         <input type="text" placeholder="Quantity" class:borderRed={borderRed===lineItem._id}
-        class="border w-11/12 border-black shadow-lg bg-opacity-50 h-full rounded pl-2" bind:value={lineItem.quantity} on:input={()=>lineItem.total = computeTotal(lineItem.quantity, lineItem.rate)}/>
+        class="border w-11/12 border-black shadow-lg bg-opacity-50 dark:bg-transparent h-full rounded pl-2" bind:value={lineItem.quantity} 
+        on:input={()=> {
+          lineItem.total = computeTotal(
+            lineItem.quantity, lineItem.rate, lineItem)
+          $currentEstimate.total= sumTotals()
+          }}/>
       </div>
       <div >
-        <select name= "unit" placeholder="unit" class:borderRed={borderRed===lineItem._id} value={lineItem.unit} class= "border border-black h-full rounded">
+        <select name= "unit" placeholder="unit" class:borderRed={borderRed===lineItem._id} value={lineItem.unit} class= "border border-black h-full rounded dark:bg-transparent">
           <option value={""} >--UNIT--</option>
           {#each rateOptions as {category, options}}
           <optgroup label={category}>
@@ -211,7 +228,12 @@ const deleteScopeItem= ( section, lineItem) => {
       </div>
       <div class= "flex justify-between">
 
-        <span> $<input type="text" class:borderRed={borderRed===lineItem._id} class=" w-20 ml-1 border border-black shadow-lg rounded" bind:value={lineItem.rate} on:input={()=>lineItem.total = computeTotal(lineItem.quantity, lineItem.rate)}/></span>
+        <span> $<input type="text" class:borderRed={borderRed===lineItem._id} class=" w-20 ml-1 border border-black shadow-lg rounded" bind:value={lineItem.rate} on:input={()=> {
+          lineItem.total = computeTotal(
+            lineItem.quantity, lineItem.rate, lineItem)
+          $currentEstimate.total= sumTotals()
+          }}/>
+          </span>
       </div>
       <div>
         <span> $<input type="text" class:borderRed={borderRed===lineItem._id} class=" w-20 ml-1 border border-black shadow-lg rounded" bind:value={lineItem.total}/></span>

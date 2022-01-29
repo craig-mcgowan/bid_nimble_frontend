@@ -12,14 +12,15 @@ const config = {
 		vite: { optimizeDeps: { include: ['lodash.get', 'lodash.isequal', 'lodash.clonedeep'] } }
 	},
 
-	extensions: ['.svelte', '.md'],
+	extensions: ['.svelte', '.md', '.svx'],
 
 	preprocess: [
-		preprocess({
+		preprocess(
+			{
 			postcss: true
 		}),
 		mdsvex({
-      extensions: ['.md']
+			extensions: ['svx', '.md']
     })
 	]
 };

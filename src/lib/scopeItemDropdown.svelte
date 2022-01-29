@@ -8,7 +8,7 @@
     const thisTrade= await $trades.find(ele=>ele.name===trade.name) 
     //if (!thisTrade){return}
     const thisSection= thisTrade.scopeSections.find(ele=>ele.name===section.name)
-    console.log(thisSection)
+    // console.log(thisSection)
     itemsArr=thisSection.scopeItems
     itemsArr.unshift(
       {
@@ -26,7 +26,7 @@
   {#if Array.isArray(itemsArr) }
 
       {#each itemsArr as item}
-        <li on:click={addLineItem(trade, section, item)} class= "first:text-gray-600 first:bg-gray-100 hover:bg-sky-800 hover:text-white rounded px-1">{item.item}</li>
+        <li on:click={addLineItem(trade, section, item)} class= "first:text-gray-600 first:bg-gray-100 hover:bg-sky-800 hover:text-white rounded px-1 cursor-default">{item.item}</li>
       {/each}
   {/if}
 </ul>
