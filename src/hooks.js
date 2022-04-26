@@ -2,7 +2,7 @@ import cookie from 'cookie';
 
 export async function handle({ request, resolve }) {
   const cookies = cookie.parse(request.headers.cookie || '');
-  console.log(cookies)
+  console.log("test ",cookies)
 
 	// code here happens before the endpoint or page is called
 	request.locals.user = cookies.user;

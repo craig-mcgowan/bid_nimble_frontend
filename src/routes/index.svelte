@@ -36,14 +36,16 @@
     </div>
     <ul class = "flex mr-10 justify-around align-middle w-48">
       <li class="h-min self-center">
-        <button  class="bg-gray-400 rounded-2xl bg-opacity-30 hover:bg-white hover:bg-opacity-30 text-white py-1 px-3 hover:scale-125">Sign Up</button>
+        <a rel="external" href="/demo">
+          <button href="/demo" class="bg-gray-400 rounded-2xl bg-opacity-30 hover:bg-white hover:bg-opacity-30 text-white py-1 px-3 hover:scale-125">Demo</button>
+        </a>
       </li>
       <li class= "h-min self-center">
         <button on:click={()=> animateScroll.scrollTo({element: '#login'}) } class="bg-gray-400 rounded-2xl bg-opacity-30 hover:bg-white hover:bg-opacity-30 text-white py-1 px-3 hover:scale-110">Log In</button>
       </li>
     </ul>
   </nav>
-<div class="absolute top-0  left-0 w-full h-full bg-gradient-to-t -z-10 bg-opacity-100 from-white via-transparent ">
+<div class="absolute top-0 left-0 w-full h-full bg-gradient-to-t -z-10 bg-opacity-100 from-white via-transparent ">
 
 </div>  
   <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-20 ">
@@ -64,15 +66,15 @@
 
 <section class = "w-full bg-sky-800 h-full py-40 ">
   <div id="login" class="mx-auto w-min flex bg-gray-100 p-4 rounded-xl content-center ">
-    
-    <form on:submit|preventDefault class=" flex flex-col w-80 border-sky-900 border p-5 rounded-xl ">
+    <!--TODO JWT AUTH-->
+    <!-- <form on:submit|preventDefault class=" flex flex-col w-80 border-sky-900 border p-5 rounded-xl ">
       <label for="username">Username: </label>
       <input id="username" type="text" bind:value={login.username} >
       <label for="password">Password: </label>
       <input id="password" type="password" bind:value={login.password}>
       <input type="submit" value="Login" class= "orange-btn w-28 self-center mt-3">
     </form>
-    <div class="h-min self-center mx-4">or</div>
+    <div class="h-min self-center mx-4">or</div> -->
     <a rel="external" href="/login" class="h-min self-center">
       <button class="gray-btn w-56 flex justify-between hover:text-cyan-200 shadow shadow-slate-800"><span class="self-center">Login using Github</span> <span class="h-8"><FaGithubAlt/></span></button>
     </a>  
