@@ -108,7 +108,7 @@ const createScopeItem = (trade, section) => {
 }
 const addLineItem = (trade, section, li) => {
   li.item = li.item === "New Blank Line Item"? "" : li.item
-  li.quantity= "1"
+  li.quantity= "0"
   li.total = computeTotal(li.quantity, li.rate)
   $estimateData.trades
     .find(t=>t.name === trade.name)
