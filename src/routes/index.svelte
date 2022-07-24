@@ -8,7 +8,6 @@
   import Carousel from '$lib/carousel/Carousel.svelte';
 
   let bgVideo
-  
   onMount(() => {
     if (typeof bgVideo.loop == "boolean") {
       bgVideo.loop = true;
@@ -23,10 +22,7 @@
       );
     }
   });
-
- 
 </script>
-
 
 <main class = "  ">
   <nav class = " pl-20 flex justify-between backdrop-blur-lg bg-blend-soft-light bg-slate-200 bg-opacity-40 shadow-sm">
